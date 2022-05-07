@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -38,16 +42,29 @@
   <body class="text-center">
     
 <main class="form-signin">
-  <form>
+
+  <form action="login.php" method="POST">
+
     <img class="mb-4" src="assets/img/bootstrap-logo.svg" alt="" width="72" height="57">
     <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
 
+
+    <?php if(isset($_SESSION['nao_autenticado'])): ?>
+        <div class="notification is-danger">
+          <p>ERRO: Usuário ou senha inválidos.</p>
+        </div>
+        <?php
+        endif;
+        unset($_SESSION['nao_autenticado']);
+      ?>
+
+    
     <div class="form-floating">
-      <input type="email" class="form-control" id="floatingInput" placeholder="username">
+      <input name="input-login-username" class="form-control" id="floatingInput" placeholder="username">
       <label for="floatingInput">Username</label>
     </div>
     <div class="form-floating">
-      <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+      <input name="input-login-password" type="password" class="form-control" id="floatingPassword" placeholder="Password">
       <label for="floatingPassword">Password</label>
     </div>
 
