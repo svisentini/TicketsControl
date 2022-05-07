@@ -62,7 +62,11 @@ include('verifica_login.php');
      
 
       
-      <h2>Tickets</h2>
+      <div class="mt-5 mb-3 clearfix">
+        <h2 class="pull-left">Tickets List</h2>
+        <!-- <a href="create.php" class="btn btn-primary pull-right"><i class="fa fa-plus"></i> Add New Ticket</a> -->
+      </div>
+
       <div class="table-responsive">
         <table class="table table-striped table-sm">
           <thead>

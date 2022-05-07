@@ -19,6 +19,7 @@ include('verifica_login.php');
 
     <link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/dashboard/">
 
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     
 
     <!-- Bootstrap core CSS -->
@@ -61,8 +62,11 @@ include('verifica_login.php');
     <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
      
 
-      
-      <h2>Users</h2>
+      <div class="mt-5 mb-3 clearfix">
+      <h2 class="pull-left">Users List</h2>
+        <a href="create.php" class="btn btn-primary pull-right"><i class="fa fa-plus"></i> Add New User</a>
+      </div>
+
       <div class="table-responsive">
         <table class="table table-striped table-sm">
 
@@ -87,16 +91,17 @@ include('verifica_login.php');
               foreach($pdo->query($sql)as $row)
               {
                   echo '<tr>';
-                  echo '<td width=270>';
-                  echo '<a href="read.php?id='.$row['usuario_id'].'"><i class="icon-home icon-4x"></i></a>';
-                  echo ' ';
-                  echo '<a class="btn btn-warning" href="update.php?id='.$row['usuario_id'].'">Update</a>';
-                  echo ' ';
-                  echo '<a class="btn btn-danger" href="delete.php?id='.$row['usuario_id'].'">Delete</a>';
-                  echo '</td>';
-                  echo '<td>'. $row['usuario_id'] . '</td>';
-                  echo '<td>'. $row['usuario'] . '</td>';
-                  echo '<td>'. $row['senha'] . '</td>';
+                    // Operations
+                    echo '<td>';
+                      echo '<a width="200" href="update.php?id='. $row['iusuario_idd'] .'" class="mr-3" title="Update Record" data-toggle="tooltip"><span class="fa fa-pencil"></span></a>';
+                      echo ' ';
+                      echo '<a href="delete.php?id='. $row['iusuario_idd'] .'" class="mr-3" title="Delete Record" data-toggle="tooltip"><span class="fa fa-trash"></span></a>';
+                    echo '</td>';
+                    
+                    // Data
+                    echo '<td>'. $row['usuario_id'] . '</td>';
+                    echo '<td>'. $row['usuario'] . '</td>';
+                    echo '<td>'. $row['senha'] . '</td>';
                   echo '</tr>';
               }
               Banco::desconectar();
